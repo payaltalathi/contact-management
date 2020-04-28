@@ -1,6 +1,6 @@
 package com.evolenthealth.contactmanagement.http.request;
 
-import com.evolenthealth.contactmanagement.Validator.ValidStatus;
+import com.evolenthealth.contactmanagement.validator.ValidStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,6 +1,6 @@
 package com.evolenthealth.contactmanagement.controller;
 
-import com.evolenthealth.contactmanagement.Service.ContactService;
+import com.evolenthealth.contactmanagement.service.ContactService;
 import com.evolenthealth.contactmanagement.http.response.ContactPostResponse;
 import com.evolenthealth.contactmanagement.http.request.ContactRequest;
 import com.evolenthealth.contactmanagement.http.response.ContactResponse;
@@ -27,13 +27,13 @@ public class ContactController {
 
     private final ContactService contactService;
 
-    @GetMapping("/contacts")
+    @GetMapping(value = "/contacts", produces = "application/json")
     public ResponseEntity<ContactResponse> getContacts() {
         ContactResponse contactList = contactService.getContactList();
         return ResponseEntity.ok().body(contactList);
     }
 
-    @PostMapping("/contacts")
+    @PostMapping(value = "/contacts", consumes = "application/json")
     public ResponseEntity<ContactPostResponse> addContact(@Valid @RequestBody ContactRequest request) {
         ContactPostResponse id = contactService.addContact(request);
         return new ResponseEntity<>(id, HttpStatus.CREATED);

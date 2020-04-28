@@ -1,4 +1,4 @@
-package com.evolenthealth.contactmanagement.Validator;
+package com.evolenthealth.contactmanagement.validator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

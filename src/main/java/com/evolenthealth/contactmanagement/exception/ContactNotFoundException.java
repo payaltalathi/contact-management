@@ -1,4 +1,4 @@
-package com.evolenthealth.contactmanagement.Exception;
+package com.evolenthealth.contactmanagement.exception;
 
 public class ContactNotFoundException extends RuntimeException{
 

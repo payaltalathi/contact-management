@@ -1,6 +1,6 @@
-package com.evolenthealth.contactmanagement.Service;
+package com.evolenthealth.contactmanagement.service;
 
-import com.evolenthealth.contactmanagement.Exception.ContactNotFoundException;
+import com.evolenthealth.contactmanagement.exception.ContactNotFoundException;
 import com.evolenthealth.contactmanagement.dao.ContactRepository;
 import com.evolenthealth.contactmanagement.dto.ContactDTO;
 import com.evolenthealth.contactmanagement.entity.ContactEntity;

@@ -1,4 +1,4 @@
-package com.evolenthealth.contactmanagement.Exception;
+package com.evolenthealth.contactmanagement.exception;
 
 import com.evolenthealth.contactmanagement.http.response.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +29,7 @@ public class ContactManagementControllerAdvice  {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<List<ErrorResponse>> validationException(MethodArgumentNotValidException ex) {
-        log.error("Exception Occurred: ", ex);
+        log.error("exception Occurred: ", ex);
 
         List<ErrorResponse> errors = new LinkedList<>();
         ex.getBindingResult()

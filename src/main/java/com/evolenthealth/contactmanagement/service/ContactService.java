@@ -1,4 +1,4 @@
-package com.evolenthealth.contactmanagement.Service;
+package com.evolenthealth.contactmanagement.service;
 
 import com.evolenthealth.contactmanagement.http.response.ContactPostResponse;
 import com.evolenthealth.contactmanagement.http.request.ContactRequest;

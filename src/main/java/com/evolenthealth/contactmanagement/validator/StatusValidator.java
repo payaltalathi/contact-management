@@ -1,4 +1,4 @@
-package com.evolenthealth.contactmanagement.Validator;
+package com.evolenthealth.contactmanagement.validator;
 
 import com.evolenthealth.contactmanagement.entity.Status;
 
