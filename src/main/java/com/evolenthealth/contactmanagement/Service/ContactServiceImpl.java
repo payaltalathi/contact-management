@@ -1,8 +1,10 @@
 package com.evolenthealth.contactmanagement.Service;
 
+import com.evolenthealth.contactmanagement.Exception.ContactNotFoundException;
 import com.evolenthealth.contactmanagement.dao.ContactRepository;
 import com.evolenthealth.contactmanagement.dto.ContactDTO;
 import com.evolenthealth.contactmanagement.entity.ContactEntity;
+import com.evolenthealth.contactmanagement.http.ContactPostResponse;
 import com.evolenthealth.contactmanagement.http.ContactRequest;
 import com.evolenthealth.contactmanagement.http.ContactResponse;
 import org.springframework.stereotype.Service;
@@ -26,9 +28,10 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public void addContact(ContactRequest contactRequest){
+    public ContactPostResponse addContact(ContactRequest contactRequest){
         ContactEntity contactEntity = toEntity(convertRequestToDTO(contactRequest));
-        contactRepository.save(contactEntity);
+        ContactEntity contactEntity1 = contactRepository.save(contactEntity);
+        return new ContactPostResponse(contactEntity1.getId());
     }
 
     @Override
@@ -43,18 +46,22 @@ public class ContactServiceImpl implements ContactService {
             contactEntity1.setStatus(contactRequest.getStatus());
             contactRepository.save(contactEntity1);
         } else {
-           // throw new ValidationException("No entry found for given Id " + indexRateRequest.getId() + " and Date " + indexRateRequest.getEffectiveDate());
+            throw new ContactNotFoundException("No Contact found for id: "+id);
         }
     }
 
     @Override
     public void deleteContact(Integer id) {
-        contactRepository.deleteById(id);
+        Optional<ContactEntity> contactEntity = contactRepository.findById(id);
+        if (contactEntity.isPresent()) {
+            contactRepository.deleteById(id);
+        } else {
+            throw new ContactNotFoundException("No Contact found for id: " + id);
+        }
     }
 
     private ContactDTO convertRequestToDTO(ContactRequest request) {
         ContactDTO contactDTO = new ContactDTO();
-      //  contactDTO.setId(0);
         contactDTO.setFirstName(request.getFirstName());
         contactDTO.setLastName(request.getLastName());
         contactDTO.setEmail(request.getEmail());

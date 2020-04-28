@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class ContactEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name="first_name")
