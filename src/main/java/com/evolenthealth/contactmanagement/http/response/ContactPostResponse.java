@@ -1,4 +1,4 @@
-package com.evolenthealth.contactmanagement.http;
+package com.evolenthealth.contactmanagement.http.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

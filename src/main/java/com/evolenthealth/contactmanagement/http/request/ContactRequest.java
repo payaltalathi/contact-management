@@ -1,6 +1,6 @@
-package com.evolenthealth.contactmanagement.http;
+package com.evolenthealth.contactmanagement.http.request;
 
-import com.evolenthealth.contactmanagement.entity.Status;
+import com.evolenthealth.contactmanagement.Validator.ValidStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,5 +18,6 @@ public class ContactRequest {
 
     private String phoneNumber;
 
-    private Status status;
+    @ValidStatus
+    private String status;
 }

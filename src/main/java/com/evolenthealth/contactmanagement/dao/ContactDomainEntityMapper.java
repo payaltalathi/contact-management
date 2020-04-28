@@ -2,10 +2,9 @@ package com.evolenthealth.contactmanagement.dao;
 
 import com.evolenthealth.contactmanagement.dto.ContactDTO;
 import com.evolenthealth.contactmanagement.entity.ContactEntity;
-import com.evolenthealth.contactmanagement.http.ContactResponse;
-
+import com.evolenthealth.contactmanagement.entity.Status;
+import com.evolenthealth.contactmanagement.http.response.ContactResponse;
 import java.util.List;
-
 import static java.util.stream.Collectors.toList;
 
 public class ContactDomainEntityMapper {
@@ -17,7 +16,7 @@ public class ContactDomainEntityMapper {
         contactDTO.setLastName(contactEntity.getLastName());
         contactDTO.setEmail(contactEntity.getEmail());
         contactDTO.setPhoneNumber(contactEntity.getPhoneNumber());
-        contactDTO.setStatus(contactEntity.getStatus());
+        contactDTO.setStatus(contactEntity.getStatus().toString());
 
         return contactDTO;
     }
@@ -28,12 +27,11 @@ public class ContactDomainEntityMapper {
 
     public static ContactEntity toEntity(ContactDTO contactDTO){
         ContactEntity contactEntity = new ContactEntity();
-        //contactEntity.setId(contactDTO.getId());
         contactEntity.setFirstName(contactDTO.getFirstName());
         contactEntity.setLastName(contactDTO.getLastName());
         contactEntity.setEmail(contactDTO.getEmail());
         contactEntity.setPhoneNumber(contactDTO.getPhoneNumber());
-        contactEntity.setStatus(contactDTO.getStatus());
+        contactEntity.setStatus(Status.fromValue(contactDTO.getStatus()));
 
         return contactEntity;
     }

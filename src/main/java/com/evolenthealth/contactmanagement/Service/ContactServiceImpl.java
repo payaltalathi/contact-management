@@ -4,9 +4,10 @@ import com.evolenthealth.contactmanagement.Exception.ContactNotFoundException;
 import com.evolenthealth.contactmanagement.dao.ContactRepository;
 import com.evolenthealth.contactmanagement.dto.ContactDTO;
 import com.evolenthealth.contactmanagement.entity.ContactEntity;
-import com.evolenthealth.contactmanagement.http.ContactPostResponse;
-import com.evolenthealth.contactmanagement.http.ContactRequest;
-import com.evolenthealth.contactmanagement.http.ContactResponse;
+import com.evolenthealth.contactmanagement.entity.Status;
+import com.evolenthealth.contactmanagement.http.response.ContactPostResponse;
+import com.evolenthealth.contactmanagement.http.request.ContactRequest;
+import com.evolenthealth.contactmanagement.http.response.ContactResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -43,10 +44,10 @@ public class ContactServiceImpl implements ContactService {
             contactEntity1.setLastName(contactRequest.getLastName());
             contactEntity1.setEmail(contactRequest.getEmail());
             contactEntity1.setPhoneNumber(contactRequest.getPhoneNumber());
-            contactEntity1.setStatus(contactRequest.getStatus());
+            contactEntity1.setStatus(Status.fromValue(contactRequest.getStatus()));
             contactRepository.save(contactEntity1);
         } else {
-            throw new ContactNotFoundException("No Contact found for id: "+id);
+            throw new ContactNotFoundException("No contact records found for the given id: "+id);
         }
     }
 
@@ -56,7 +57,7 @@ public class ContactServiceImpl implements ContactService {
         if (contactEntity.isPresent()) {
             contactRepository.deleteById(id);
         } else {
-            throw new ContactNotFoundException("No Contact found for id: " + id);
+            throw new ContactNotFoundException("No contact records found for the given id: " + id);
         }
     }
 

@@ -1,8 +1,8 @@
 package com.evolenthealth.contactmanagement.Service;
 
-import com.evolenthealth.contactmanagement.http.ContactPostResponse;
-import com.evolenthealth.contactmanagement.http.ContactRequest;
-import com.evolenthealth.contactmanagement.http.ContactResponse;
+import com.evolenthealth.contactmanagement.http.response.ContactPostResponse;
+import com.evolenthealth.contactmanagement.http.request.ContactRequest;
+import com.evolenthealth.contactmanagement.http.response.ContactResponse;
 
 public interface ContactService {
 
