@@ -27,13 +27,13 @@ public class ContactController {
 
     private final ContactService contactService;
 
-    @GetMapping(value = "/contacts", produces = "application/json")
+    @GetMapping(value = "/contacts")
     public ResponseEntity<ContactResponse> getContacts() {
         ContactResponse contactList = contactService.getContactList();
         return ResponseEntity.ok().body(contactList);
     }
 
-    @PostMapping(value = "/contacts", consumes = "application/json")
+    @PostMapping(value = "/contacts")
     public ResponseEntity<ContactPostResponse> addContact(@Valid @RequestBody ContactRequest request) {
         ContactPostResponse id = contactService.addContact(request);
         return new ResponseEntity<>(id, HttpStatus.CREATED);

@@ -1,5 +1,5 @@
 # contact-management
-This project helps us to manage contact details and perform CRUD operations on available contact details.
+This project helps us manage contact details and perform CRUD operations on the available contact details.
 
 
 ## Built With
@@ -7,7 +7,8 @@ This project helps us to manage contact details and perform CRUD operations on a
 * 	[Maven](https://maven.apache.org/) - Build Tool(Dependency Management)
 * 	[JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) - Java™ Platform, Standard Edition Development Kit
 * 	[Spring Boot](https://spring.io/projects/spring-boot) - Framework to ease the bootstrapping and development of new Spring Applications
-* 	[RESTful web service](https://swagger.io/) - Lightweight architectural style to deal with CRUD operations.
+* 	[RESTful web service](https://restfulapi.net/) - Lightweight architectural style to deal with CRUD operations.
+* 	[Hibernate](https://hibernate.org/) & [Spring Data JPA](https://spring.io/projects/spring-data-jpa) - Hibernate is implementation of JPA and ORM, it provides abstraction over JDBC. Spring Data JPA provides further abstraction over JPA implementations with the help of JPA repositories.
 *   [H2](https://www.h2database.com/) - Open-Source lightweight inMemory Relational Database
 * 	[git](https://git-scm.com/) - Free and Open-Source distributed version control system
 * 	[Lombok](https://projectlombok.org/) - Space saver and boilerplate code remover.
@@ -103,6 +104,7 @@ The project (a.k.a. project directory) has a particular directory structure. A r
 
 ## packages
 
+- `config` — to hold security config;
 - `controller` — to listen to the client;
 - `dao` — to communicate with the database;
 - `dto` — to hold model class;
@@ -116,4 +118,4 @@ The project (a.k.a. project directory) has a particular directory structure. A r
 
 - `test/` - contains unit tests
 
-- `pom.xml` - It is an XML representation of project resources , such as project dependencies.
+- `pom.xml` - It is an XML representation of project resources, such as project dependencies.

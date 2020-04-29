@@ -8,6 +8,7 @@ import com.evolenthealth.contactmanagement.entity.Status;
 import com.evolenthealth.contactmanagement.http.response.ContactPostResponse;
 import com.evolenthealth.contactmanagement.http.request.ContactRequest;
 import com.evolenthealth.contactmanagement.http.response.ContactResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -16,12 +17,10 @@ import static com.evolenthealth.contactmanagement.dao.ContactDomainEntityMapper.
 import static com.evolenthealth.contactmanagement.dao.ContactDomainEntityMapper.toEntity;
 
 @Service
+@RequiredArgsConstructor
 public class ContactServiceImpl implements ContactService {
 
     private final ContactRepository contactRepository;
-
-    public ContactServiceImpl(ContactRepository contactRepository) {
-        this.contactRepository = contactRepository;}
 
     @Override
     public ContactResponse getContactList() {
