@@ -7,11 +7,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.ZonedDateTime;
 import java.util.LinkedList;
 import java.util.List;
+
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
 @RestControllerAdvice
 @Slf4j
@@ -28,7 +31,7 @@ public class ContactManagementControllerAdvice  {
       }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<List<ErrorResponse>> validationException(MethodArgumentNotValidException ex) {
+    public ResponseEntity<List<ErrorResponse>> handleValidationException(MethodArgumentNotValidException ex) {
         log.error("exception Occurred: ", ex);
 
         List<ErrorResponse> errors = new LinkedList<>();
@@ -46,6 +49,17 @@ public class ContactManagementControllerAdvice  {
 
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
       }
+
+    @ResponseStatus(INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> handleInternalException(Exception ex) {
+        log.error("Exception Occurred: ", ex);
+
+        ErrorResponse errorResponse = buildErrorDetails(ex.getMessage(), "", String.valueOf(INTERNAL_SERVER_ERROR.value()));
+
+        return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(errorResponse);
+    }
+
 
     private ErrorResponse buildErrorDetails(String errorMessage, String fieldName, String status) {
         return ErrorResponse.builder().message(errorMessage).field(fieldName).status(status).timestamp(ZonedDateTime.now()).build();
