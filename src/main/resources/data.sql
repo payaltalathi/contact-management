@@ -11,5 +11,5 @@ CREATE TABLE contact (
 
 
 INSERT INTO contact (first_name, last_name, email, phone_number, status) VALUES
-  ('Payal', 'Talathi', 'payaltalathi@gmail.com', '8080274116', 'ACTIVE'),
-  ('Shreyash', 'Kumar', 'shreyash.kumar1@gmail.com', '8390260323', 'INACTIVE');
+  ('Payal', 'Talathi', 'payaltalathi@gmail.com', '+918080274116', 'ACTIVE'),
+  ('Yash', 'Talathi', 'yash.talathi1998@gmail.com', '08390260323', 'INACTIVE');

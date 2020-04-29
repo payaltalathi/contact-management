@@ -27,7 +27,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
@@ -39,15 +38,26 @@ public class ContactControllerTest {
     private static final String CONTACT_REQUEST = "{"
             + "\"firstName\":\"Payal\",\"lastName\":\"Talathi\","
             + "\"email\":\"payaltalathi@gmail.com\","
-            + "\"phoneNumber\":\"8080274116\","
+            + "\"phoneNumber\":\"08080274116\","
+            +  "\"status\":\"active\"}";
+
+    private static final String INVALID_FIRST_NAME_EMAIL_CONTACT_REQUEST = "{"
+            + "\"firstName\":\"\",\"lastName\":\"Talathi\","
+            + "\"email\":\"payaltalathigmail.com\","
+            + "\"phoneNumber\":\"08080274116\","
             +  "\"status\":\"active\"}";
 
     private static final String UPDATE_CONTACT_REQUEST = "{"
             + "\"firstName\":\"Yash\",\"lastName\":\"Talathi\","
             + "\"email\":\"yashtalathi@gmail.com\","
-            + "\"phoneNumber\":\"8080274116\","
+            + "\"phoneNumber\":\"08080274116\","
             +  "\"status\":\"inactive\"}";
 
+    private static final String INVALID_PHONE_NUM_STATUS_UPDATE_CONTACT_REQUEST = "{"
+            + "\"firstName\":\"Yash\",\"lastName\":\"Talathi\","
+            + "\"email\":\"yashtalathi@gmail.com\","
+            + "\"phoneNumber\":\"8080274116\","
+            +  "\"status\":\"inctive\"}";
 
     @Mock
     private ContactService contactService;
@@ -78,6 +88,15 @@ public class ContactControllerTest {
                 .andExpect(jsonPath("$.id", Matchers.is(1)));
     }
 
+    @Test
+    public void testAddContactForInvalidRequest() throws Exception {
+
+        mvc.perform(post("/contacts")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(INVALID_FIRST_NAME_EMAIL_CONTACT_REQUEST))
+                .andExpect(status().isBadRequest());
+
+    }
 
     @Test
     public void testRetrieveContactList() throws Exception {
@@ -95,7 +114,6 @@ public class ContactControllerTest {
         mvc.perform(get("/contacts")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andDo(print())
                 .andExpect(jsonPath("$.contactList").exists())
                 .andExpect(jsonPath("$.contactList[0].status", Matchers.is("Active")))
                 .andExpect(jsonPath("$.contactList[0].phoneNumber", Matchers.is("9823358182")))
@@ -110,6 +128,15 @@ public class ContactControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(UPDATE_CONTACT_REQUEST))
                 .andExpect(status().isNoContent());
+    }
+
+    @Test
+    public void testUpdateContactForInvalidRequest() throws Exception {
+
+        mvc.perform(put("/contacts/{id}", ID)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(INVALID_PHONE_NUM_STATUS_UPDATE_CONTACT_REQUEST))
+                .andExpect(status().isBadRequest());
     }
 
     @Test
