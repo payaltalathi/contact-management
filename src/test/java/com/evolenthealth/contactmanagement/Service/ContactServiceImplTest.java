@@ -1,4 +1,4 @@
-package com.evolenthealth.contactmanagement.controller.Service;
+package com.evolenthealth.contactmanagement.Service;
 
 import com.evolenthealth.contactmanagement.exception.ContactNotFoundException;
 import com.evolenthealth.contactmanagement.service.ContactServiceImpl;

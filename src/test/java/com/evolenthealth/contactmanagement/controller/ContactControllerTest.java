@@ -1,7 +1,6 @@
-package com.evolenthealth.contactmanagement.controller.controller;
+package com.evolenthealth.contactmanagement.controller;
 
 import com.evolenthealth.contactmanagement.service.ContactService;
-import com.evolenthealth.contactmanagement.controller.ContactController;
 import com.evolenthealth.contactmanagement.dto.ContactDTO;
 import com.evolenthealth.contactmanagement.http.request.ContactRequest;
 import com.evolenthealth.contactmanagement.http.response.ContactPostResponse;
